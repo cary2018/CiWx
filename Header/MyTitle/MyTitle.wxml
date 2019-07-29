@@ -1,0 +1,18 @@
+<view class='my_title'>
+  <!--logo--->
+  <navigator class='logo'>
+    <image class='logo_img' src='../../icon/logo.png'></image>
+  </navigator>
+  <!--搜索--->
+  <view class='serch'>
+    <image style='width:60rpx;height:54rpx;' src='../../icon/serch.png'></image>
+  </view>
+  <!--用户--->
+  <view class='user'>
+    <image style='width:60rpx;height:60rpx;' src='../../icon/user.png'></image>
+  </view>
+  <!--下载按钮---->
+  <view class='down'>
+    下载 app
+  </view>
+</view>
