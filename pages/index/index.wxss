@@ -2,47 +2,11 @@ page{
   color:#666;
   padding:10rpx;
 }
-/*首页导航*/
-.nav_wrap{}
-.nav{
-  white-space: nowrap;
-  padding: 5px 0;
-}
-.nav_item{
-  padding:20rpx 45rpx;
-  font-size: 30rpx;
-  display: inline-block;
-}
-.nav_item.active{
-  border-bottom:1rpx solid #de688b;
-}
-/**轮播图**/
-.banner{
-  padding-top:10rpx;
-}
-.banner swiper{
-  height:220rpx;
-}
-.banner navigator{
-  width:100%;
-  height: 100%;
-}
-.banner image{
-  width:100%;
-  height:100%;
-}
-/***文章列表***/
-.art_warp{
-  display: flex;
-  padding:5rpx;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  font-size: 35rpx;
-}
-.art_img{
-  width: 48%;
-  margin-bottom:20rpx;
-}
-.art_img image{
-  width: 100%;
+.fixed{
+  background:#fff;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }

@@ -1,12 +1,10 @@
 <view class='main'>
-  <!--公共头部-->
-  <MyTitle></MyTitle>
-  <view>
-    {{articleInfo[0].ar_title}}
+  <view class="title">
+    {{title}}
   </view>
+  
   <view class='tex'>
-    <!--<rich-text class='cent' space='' nodes="{{articleInfo[0].ar_content}}" bindtap="tap"></rich-text>-->
-    <import src="../../wxParse/wxParse.wxml" />
+    <import src="../../components/wxParse/wxParse.wxml" />
     <template is="wxParse" data="{{wxParseData:article.nodes}}" />
   </view>
 </view>

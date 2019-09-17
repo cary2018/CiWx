@@ -1,0 +1,5 @@
+<!--pages/articleList/list.wxml-->
+<!------导航------->
+<ar-header header="{{navList}}" cat_id="{{cat_id}}"/>
+<!-------文章列表------->
+<ar-list article="{{articleList}}"/>

@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "一点星技术博客",
   "usingComponents": {
-    "MyTitle": "../../Header/MyTitle/MyTitle"
+    "ar-header":"../../components/header/header",
+    "ar-banner": "../../components/banner/ar-banner",
+    "ar-list": "../../components/list/list"
   }
 }

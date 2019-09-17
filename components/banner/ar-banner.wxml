@@ -1,0 +1,8 @@
+<!--components/banner/ar-banner.wxml-->
+  <view class='banner'>
+    <swiper autoplay='true' indicator-dots='true' circular='true'>
+      <swiper-item wx:for="{{ar_swiper}}" wx:key="{{index}}">
+          <image mode="widthFix" src="{{webUrl}}/{{item.banner_img}}" ></image>
+      </swiper-item>
+    </swiper>
+  </view>

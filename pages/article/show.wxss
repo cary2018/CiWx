@@ -1,6 +1,7 @@
 /* pages/article/show.wxss */
-@import "../../wxParse/wxParse.wxss";
+@import "../../components/wxParse/wxParse.wxss";
 .tex{width:100%;}
 .tex img{  width:100%;height:100%;}
 .cent{width: 300rpx;}
 .cent img{width: 100%;height:100%;}
+.title{ text-align: center;font-size: 45rpx;font-weight:500;padding:35rpx;}

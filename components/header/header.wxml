@@ -1,0 +1,11 @@
+<!--components/header/header.wxml-->
+<view class='nav_wrap'>
+    <scroll-view class='nav' scroll-x>
+      <view wx:for="{{header}}" wx:key="{{index}}" 
+            class="nav_item {{index==indexNav?'active':''}}">
+        <view bindtap="clickNav" data-index="{{index}}" id="{{item.cat_id}}">
+            {{item.cat_name}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>

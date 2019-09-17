@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ar-header": "../../components/header/header",
+    "ar-list": "../../components/list/list"
+  }
+}

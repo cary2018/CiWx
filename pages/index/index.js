@@ -1,86 +1,94 @@
-Page({
+// pages/home/home.js
+import {
+  getData
+} from '../../service/public.js'
+import{
+  baseURL
+} from '../../service/config.js'
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-    //服务器地址
-    webUrl:'https://www.889sw.com',
-    //被点击的导航菜单索引
-    indexNav:0,
+    webUrl: baseURL,
     //首页导航
     navList:[],
     //轮播图片
     bannerList:[],
     //文章数据
-    articleList:[]
-  },
-
-  //点击导航菜单按钮
-  clickNav(e){
-    this.setData({
-      indexNav:e.target.dataset.index
-    })
-  },
-
-  //获取菜单导航信息
-  getNavList(){
-    let that = this;
-    //利用小程序内置发送请求方法
-    wx.request({
-      url: 'https://www.889sw.com/wxapi',
-      success(res){
-        //console.log(res);
-        if(res.data.code == 1000){
-          that.setData({
-            navList:res.data.data
-          })
-        }
-      }
-    })
-  },
-
-  //获取轮播图片
-  getBanner(){
-    let that = this;
-    wx.request({
-      url: 'https://www.889sw.com/wxapi/banner',
-      success(res){
-        //console.log(res);
-        if(res.data.code==1000){
-          that.setData({
-            bannerList:res.data.data
-          })
-        }
-      }
-    })
-  },
-
-  //获取文章数据
-  getArticle(){
-    let that = this;
-    wx.request({
-      url: 'https://www.889sw.com/wxapi/article',
-      success(res){
-        if(res.data.code=1000){
-          that.setData({
-            articleList:res.data.list
-          })
-        }
-      }
-    })
+    articleList:[],
+    typeid:0,
+    page:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //获取导航数据
-    this.getNavList();
-    //加载轮播图片
-    this.getBanner();
-    //加载文章
-    this.getArticle();
+    //1.导航
+    this._navList()
+    //2.请求轮播图
+    this._banner()
+    //3.文章
+    this._article()
+    //
+    //console.log(ar_id)
+  },
+  //导航
+  _navList(){
+    getData('/wxapi').then(res => {
+      const navList = res.data.data;
+      this.setData({
+        navList: navList,
+      })
+    })
+  },
+  //轮播图
+  _banner(){
+    getData('/wxapi/banner').then(res => {
+      const bannerList = res.data.data;
+      this.setData({
+        bannerList: bannerList,
+      })
+    })
+  },
+  //文章
+  _article(){
+    let that = this;
+    const typeid = that.data.typeid;
+    const  page = that.data.page+1;
+    getData('/wxapi/article', typeid, page).then(res => {
+      const art = res.data.list;
+      const oldlist = that.data.articleList;
+      oldlist.push(...art);
+      //console.log(oldlist);
+      this.setData({
+        articleList: oldlist,
+        typeid:typeid,
+        page:page
+      })
+    })
+  },
+
+  //点击菜单事件监听
+  handleTabClick(a){
+    //取出id
+    let that = this;
+    const id = a.detail;
+    const pg = 0;
+    const page = pg+1;
+    getData('/wxapi/article', id, page).then(res => {
+      const art = res.data.list;
+      const oldlist = that.data.articleLis;
+      //oldlist.push(...art)
+      this.setData({
+        articleList: art,
+        typeid:id,
+        page:page
+      })
+    })
+    console.log(id);
   },
 
   /**
@@ -122,7 +130,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log('到底啦。。。')
+    this._article()
+    //console.log('到底啦。。。')
   },
 
   /**

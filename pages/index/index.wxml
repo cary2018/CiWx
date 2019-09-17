@@ -1,35 +1,9 @@
 <view class='main'>
-<!---调用自定义公共文件----->
-  <MyTitle></MyTitle>
-  <!---调用导航数据---->
-  <view class='nav_wrap'>
-    <scroll-view class='nav' scroll-x>
-      <view bindtap="clickNav" data-index="{{index}}"
-       class="nav_item {{index==indexNav?'active':''}}"
-        wx:for="{{navList}}" wx:key="{{index}}">
-        {{item.cat_name}}
-      </view>
-    </scroll-view>
-  </view>
+  <!---调用导航菜单---->
+  <ar-header header="{{navList}}" cat_id="{{cat_id}}" 
+                bind:tabclick="handleTabClick" class="fixed"/>
   <!----调用轮播图------>
-  <view class='banner'>
-    <swiper autoplay='true' indicator-dots='true' circular='true'>
-      <swiper-item wx:for="{{bannerList}}" wx:key="{{index}}">
-        <navigator>
-          <image mode="widthFix" src="{{webUrl}}/{{item.banner_img}}" ></image>
-        </navigator>
-      </swiper-item>
-    </swiper>
-  </view>
+  <ar-banner ar_swiper="{{bannerList}}"/>
   <!----文章列表----->
-  <view class='art_warp'>
-    <view class='art_img' wx:for="{{articleList}}" wx:key="{{index}}">
-      <navigator url='../article/show?id={{item.id}}'>
-        <view>
-          <image mode='widthFix' lazy-load='true' src='{{webUrl}}/{{item.ar_img}}'></image>
-        </view>
-        <view>{{item.ar_title}}</view>
-      </navigator>
-    </view>
-  </view>
+  <ar-list article="{{articleList}}" />
 </view>

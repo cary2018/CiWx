@@ -1,32 +1,55 @@
-// pages/article/show.js
-var WxParse = require('../../components/wxParse/wxParse.js');
-import{
+// pages/articleList/list.js
+import {
   getData
-} from '../../service/public.js';
+} from '../../service/public.js'
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    title:[]
+    //首页导航
+    navList: [],
+    //文章数据
+    articleList: [],
+    cat_id:[]
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this;
-    let id = options.id;
-    getData('/wxapi/show?id=' + id).then(res => {
-      const art = res.data.data;
-      console.log(id);
-      var article = res.data.data[0].ar_content;
-      WxParse.wxParse('article', 'html', article, this, 5)
+    //1.导航
+    this._navList()
+    //2.文章
+    this._article()
+    //文章分类id
+    let id = options.id
+    console.log(id)
+    this.setData({
+      cat_id:id
+    })
+  },
+
+  //导航
+  _navList() {
+    getData('/wxapi').then(res => {
+      const navList = res.data.data;
       this.setData({
-        title: art[0].ar_title
+        navList: navList,
       })
     })
   },
+
+  //文章
+  _article() {
+    getData('/wxapi/article').then(res => {
+      const art = res.data.list;
+      this.setData({
+        articleList: art,
+      })
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -66,7 +89,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+
   },
 
   /**

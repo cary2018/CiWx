@@ -1,0 +1,23 @@
+/* list/list.wxss */
+/***文章列表***/
+.art_warp{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  font-size: 35rpx;
+}
+.art_img{
+  width: 50%;
+  margin-bottom:20rpx;
+  float:left;
+  padding:10rpx;
+}
+.art_img image{
+  width: 100%;
+}
+.title{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 30rpx;
+}
